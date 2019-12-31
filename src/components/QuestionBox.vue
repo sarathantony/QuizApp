@@ -11,9 +11,8 @@
           v-for="(item, index) in answers"
           :key="index"
           @click.prevent="selectedAnswer(index)"
-          :class="setStatus(index)"
         >
-          <span v-html="item"></span>
+          <span :class="setStatus(index)" v-html="item"></span>
         </b-list-group-item>
       </b-list-group>
 
@@ -74,7 +73,10 @@
         if (submitted) {
           if (index === correctIndex) return 'correct-answer'
           else if (index === selectedIndex && index !== correctIndex) return 'wrong-answer'
-        } else return ''
+        } else {
+            if (index === selectedIndex) return 'selected'
+            else return ''
+        }
       }
     },
     watch: {
@@ -114,7 +116,8 @@
     margin: 0 0.5rem;
   }
   .selectedIndex {
-    background-color: lightblue;
+    /* background-color: lightblue; */
+    color: gray;
   }
   .correct {
     background-color: lightgreen;
@@ -126,9 +129,16 @@
     cursor: not-allowed;
   }
   .correct-answer {
-    background-color: green;
+    /* background-color: green; */
+    color: green;
+    font-weight: 500;
   }
   .wrong-answer {
-    background-color: red;
+    /* background-color: red; */
+    color: red;
+    font-weight: 400;
+  }
+  .selected {
+    color: gray;
   }
 </style>
