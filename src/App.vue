@@ -50,12 +50,13 @@ export default {
     }
   },
   mounted: function() {
+    // QUESTIONS
     fetch('https://opentdb.com/api.php?amount=10&category=28&type=multiple', {
       method: 'get'
     })
     .then(response => response.json())
     .then(data => this.questions = data.results)
-  },
+    },
 }
 </script>
 
